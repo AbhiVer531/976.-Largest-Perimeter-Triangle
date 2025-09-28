@@ -1,0 +1,18 @@
+class Solution:
+    def largestPerimeter(self, nums: List[int]) -> int:
+        def checkValidTri(a: int, b: int, c: int) -> bool:
+            return (a + b > c) and (a + c > b) and (b + c > a)
+
+        n = len(nums)
+        largestP = 0
+        for i in range(n - 2):
+            s1 = nums[i]
+            for j in range(i + 1, n - 1):
+                s2 = nums[j]
+                for k in range(j + 1, n):
+                    s3 = nums[k]
+                    if checkValidTri(s1, s2, s3):
+                        p = s1 + s2 + s3
+                        if p > largestP:
+                            largestP = p
+        return largestP
